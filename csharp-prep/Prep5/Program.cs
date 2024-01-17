@@ -8,16 +8,31 @@ class Program
     {
         Console.WriteLine("Hello Prep5 World!");
 
-        int addTwo(int number)
+        int AddTwo(int number)
         {
             return number + 2;
         }
 
-        int more = addTwo(10);
+        int more = AddTwo(10);
 
-        void printName(string name)
+        void PrintName(string name)
         {
             Console.WriteLine($"Hello {name}");
+        }
+
+        PrintName("Bob");
+
+        var y = 0;
+        {
+            var w = 10;
+            w = y + 4;
+            y = 2 + 5;
+        }
+        
+        {
+            var w = 10;
+            w = y + 4;
+            y = 2 + 5;
         }
     }
 }
