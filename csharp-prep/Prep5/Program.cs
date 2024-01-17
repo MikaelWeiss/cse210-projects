@@ -6,33 +6,40 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Prep5 World!");
+        var name = PromptUserName();
+        var number = PromptUserNumber();
+        DisplayResult(name, number);
+    }
 
-        int AddTwo(int number)
-        {
-            return number + 2;
-        }
+    static void DisplayWelcomeMessage()
+    {
+        Console.WriteLine("Welcome to the program!");
+    }
 
-        int more = AddTwo(10);
+    static string PromptUserName()
+    {
+        Console.Write("Please enter your name: ");
+        var name = Console.ReadLine();
 
-        void PrintName(string name)
-        {
-            Console.WriteLine($"Hello {name}");
-        }
+        return name;
+    }
 
-        PrintName("Bob");
+    static int PromptUserNumber()
+    {
+        Console.Write($"Please enter your favorite number: ");
+        var number = int.Parse(Console.ReadLine());
 
-        var y = 0;
-        {
-            var w = 10;
-            w = y + 4;
-            y = 2 + 5;
-        }
-        
-        {
-            var w = 10;
-            w = y + 4;
-            y = 2 + 5;
-        }
+        return number;
+    }
+
+    static int SquareNumber(int number)
+    {
+        return number * number;
+    }
+
+    static void DisplayResult(string name, int number) {
+        var squaredNumber = SquareNumber(number);
+
+        Console.WriteLine($"Hello {name}, the square of your number is {squaredNumber}");
     }
 }
