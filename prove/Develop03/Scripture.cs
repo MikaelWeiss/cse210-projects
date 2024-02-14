@@ -37,7 +37,7 @@ public class Scripture
     }
     public bool AllWordsAreHidden()
     {
-        return !words.Exists(word => !word.IsHidden()); // Fix the syntax error and use the IsHidden method
+        return !words.Exists(word => !word.IsHidden());
     }
     public Scripture(string book, string chapter, string verses, List<String> words)
     {
