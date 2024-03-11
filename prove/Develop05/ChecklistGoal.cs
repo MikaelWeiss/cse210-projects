@@ -18,7 +18,8 @@ class ChecklistGoal : Goal
     }
     public override string DisplayStringValue()
     {
-        return "Checklist Goal";
+        string isCompleteString = isComplete ? "X" : " ";
+        return $"[{isCompleteString}] {name} ({description}) -- Curently completed {timesCompleted} out of {timesToComplete} times. - points to complete: {pointsToComplete} - Bonus: {bonus} points.";
     }
     public override string StorageString()
     {
@@ -27,7 +28,7 @@ class ChecklistGoal : Goal
 
     public ChecklistGoal(string name, string description, int pointsToComplete, int timesToComplete, int bonus) : base(name, description, pointsToComplete)
     {
-        this.timesCompleted = timesToComplete;
+        this.timesToComplete = timesToComplete;
         this.bonus = bonus;
     }
     public ChecklistGoal(string stringValue) : this("", "", 0, 0, 0)

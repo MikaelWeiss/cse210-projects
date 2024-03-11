@@ -161,10 +161,11 @@ class Program
         Console.WriteLine("Select a goal to record an event for: ");
         for (int i = 0; i < goals.Count; i++)
         {
-            Console.WriteLine(i + ". " + goals[i].DisplayStringValue());
+            string numberString = (i + 1).ToString();
+            Console.WriteLine(numberString + ". " + goals[i].DisplayStringValue());
         }
         int option = Convert.ToInt32(Console.ReadLine());
-        currentScore += goals[option].DidCompleteOccurrence();
+        currentScore += goals[option - 1].DidCompleteOccurrence();
         Console.Clear();
         Console.WriteLine("Event recorded");
         Console.WriteLine();

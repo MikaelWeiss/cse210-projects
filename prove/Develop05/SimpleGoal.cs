@@ -7,7 +7,8 @@ class SimpleGoal(string name, string description, int pointsToComplete) : Goal(n
     }
     public override string DisplayStringValue()
     {
-        return "Simple Goal";
+        string isCompleteString = isComplete ? "X" : " ";
+        return $"[{isCompleteString}] {name} ({description}) - points to complete: {pointsToComplete}";
     }
 
     public override string StorageString()
