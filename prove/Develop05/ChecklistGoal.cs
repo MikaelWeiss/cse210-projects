@@ -2,9 +2,19 @@ class ChecklistGoal : Goal
 {
     private int timesToComplete;
     private int timesCompleted;
-    public override void CheckIfComplete()
+    private int bonus;
+    public override int DidCompleteOccurrence()
     {
-        // Check if all the items in the checklist are complete
+        if (timesCompleted < timesToComplete)
+        {
+            timesCompleted++;
+            if (timesCompleted == timesToComplete)
+            {
+                isComplete = true;
+                return pointsToComplete + bonus;
+            }
+        }
+        return pointsToComplete;
     }
     public override string DisplayStringValue()
     {
@@ -12,15 +22,22 @@ class ChecklistGoal : Goal
     }
     public override string StorageString()
     {
-        return "ChecklistGoal";
+        return "ChecklistGoal~&~" + name + "~~~" + description + "~~~" + pointsToComplete + "~~~" + timesToComplete + "~~~" + timesCompleted + "~~~" + bonus;
     }
 
-    ChecklistGoal(string name, string description, int pointsToComplete, int timesToComplete) : base(name, description, pointsToComplete)
+    public ChecklistGoal(string name, string description, int pointsToComplete, int timesToComplete, int bonus) : base(name, description, pointsToComplete)
     {
         this.timesCompleted = timesToComplete;
+        this.bonus = bonus;
     }
-    ChecklistGoal(string stringValue)
+    public ChecklistGoal(string stringValue) : this("", "", 0, 0, 0)
     {
-        // Parse the string and set the fields
+        string[] split = stringValue.Split("~~~");
+        name = split[0];
+        description = split[1];
+        pointsToComplete = Convert.ToInt32(split[2]);
+        timesToComplete = Convert.ToInt32(split[3]);
+        timesCompleted = Convert.ToInt32(split[4]);
+        bonus = Convert.ToInt32(split[5]);
     }
 }

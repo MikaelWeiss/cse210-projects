@@ -1,0 +1,1 @@
+115&*&SimpleGoal~&~asdf~~~asdf~~~50~~~True~~~|~~~ChecklistGoal~&~asdf~~~asdf~~~50~~~0~~~5~~~500~~~|~~~EternalGoal~&~This goal never ends~~~this is a goal that never ends~~~10~~~|~~~SimpleGoal~&~asdl;kfj;alskdjf~~~as;ldkfjl;kjasdlf~~~55~~~True

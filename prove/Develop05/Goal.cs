@@ -1,14 +1,10 @@
-public abstract class Goal
+abstract class Goal(string name, string description, int pointsToComplete)
 {
-    private string name;
-    private string description;
-    private bool isComplete;
-    private int pointsToComplete;
-    public int GetPointsToComplete()
-    {
-        return pointsToComplete;
-    }
-    public abstract void CheckIfComplete();
+    protected string name = name;
+    protected string description = description;
+    protected bool isComplete;
+    protected int pointsToComplete = pointsToComplete;
+    public abstract int DidCompleteOccurrence();
     public abstract string DisplayStringValue();
     public abstract string StorageString();
 }
