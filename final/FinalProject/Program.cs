@@ -1,21 +1,22 @@
+using System.Runtime.Versioning;
+
 class Program
 {
     static List<Vision> visions;
     static void Main(string[] args)
     {
         visions = new List<Vision>();
+        Console.Clear();
         DisplayMenu();
     }
 
     static void DisplayMenu()
     {
-        Console.Clear();
-        Console.WriteLine("1. Create Vision");
-        Console.WriteLine("2. Delete Vision");
-        Console.WriteLine("3. Display Visions");
-        Console.WriteLine("4. Save Visions");
-        Console.WriteLine("5. Load Visions");
-        Console.WriteLine("6. Exit");
+        Console.WriteLine("1. Today's Events");
+        Console.WriteLine("2. View Visions");
+        Console.WriteLine("3. Save All");
+        Console.WriteLine("4. Load All");
+        Console.WriteLine("5. Exit");
         Console.Write("What would you like to do? ");
 
         string choice = Console.ReadKey().KeyChar.ToString();
@@ -23,21 +24,18 @@ class Program
         switch (choice)
         {
             case "1":
-                CreateVision();
+                DisplayManager.DisplayTodaysEvents(visions);
                 break;
             case "2":
-                DeleteVision();
+                DisplayManager.DisplayVisions(visions);
                 break;
             case "3":
-                DisplayVisions();
+                Vision.SaveVisions(visions);
                 break;
             case "4":
-                SaveVisions();
+                Vision.LoadVisions(visions);
                 break;
             case "5":
-                LoadVisions();
-                break;
-            case "6":
                 Environment.Exit(0);
                 break;
             default:
@@ -48,30 +46,5 @@ class Program
         }
 
         DisplayMenu();
-    }
-
-    static void CreateVision()
-    {
-
-    }
-
-    static void DeleteVision()
-    {
-
-    }
-
-    static void DisplayVisions()
-    {
-
-    }
-
-    static void SaveVisions()
-    {
-
-    }
-
-    static void LoadVisions()
-    {
-
     }
 }

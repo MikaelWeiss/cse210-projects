@@ -11,4 +11,14 @@ class Note
     {
         return $"{Date.ToShortDateString()}: {Text}";
     }
+    public Note(string storageString)
+    {
+        string[] storageArray = storageString.Split("|~%|");
+        Date = Convert.ToDateTime(storageArray[0]);
+        Text = storageArray[1];
+    }
+    public string StorageStringValue()
+    {
+        return $"{Date}|~%|{Text}";
+    }
 }
