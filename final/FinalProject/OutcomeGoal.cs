@@ -17,6 +17,7 @@ class OutcomeGoal : Goal
         this.endDate = endDate;
         this.goalType = goalType;
         this.recurrence = recurrence;
+        isComplete = false;
         events = [];
         notes = [];
     }
@@ -30,7 +31,7 @@ class OutcomeGoal : Goal
     {
         string eventsString = string.Join("|~|", events.Select(e => e.StorageStringValue()));
         string notesString = string.Join("|~|", notes.Select(n => n.StorageStringValue()));
-        return $"OutcomeGoal||{goalType}||{recurrence}||{eventsString}||{notesString}||{desiredOutcome}||{endDate}";
+        return $"OutcomeGoal||{goalType}||{recurrence}||{eventsString}||{notesString}||{desiredOutcome}||{endDate}||{isComplete}";
     }
 
     // CRUD
@@ -86,5 +87,7 @@ class OutcomeGoal : Goal
         desiredOutcome = storageArray[5];
 
         endDate = Convert.ToDateTime(storageArray[6]);
+
+        isComplete = Convert.ToBoolean(storageArray[7]);
     }
 }
