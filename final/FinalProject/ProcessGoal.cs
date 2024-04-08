@@ -22,7 +22,7 @@ class ProcessGoal : Goal
         events.Add(newEvent);
     }
 
-    public ProcessGoal(string desiredProcess, GoalType goalType, Recurrence recurrence)
+    public ProcessGoal(string desiredProcess, GoalType goalType, RecurrenceType recurrence)
     {
         this.desiredProcess = desiredProcess;
         this.goalType = goalType;
@@ -35,7 +35,7 @@ class ProcessGoal : Goal
     {
         string[] storageArray = storageString.Split("||");
         goalType = (GoalType)Enum.Parse(typeof(GoalType), storageArray[1]);
-        recurrence = (Recurrence)Enum.Parse(typeof(Recurrence), storageArray[2]);
+        recurrence = (RecurrenceType)Enum.Parse(typeof(RecurrenceType), storageArray[2]);
         string[] eventStrings = storageArray[3].Split("|~|");
         foreach (string eventString in eventStrings)
         {
@@ -59,10 +59,20 @@ class ProcessGoal : Goal
         Console.Clear();
         Console.Write("Enter Desired Process: ");
         string desiredProcess = Console.ReadLine();
-        Console.Write("Enter Goal Type: ");
-        GoalType goalType = (GoalType)Enum.Parse(typeof(GoalType), Console.ReadLine());
-        Console.Write("Enter Recurrence: ");
-        Recurrence recurrence = (Recurrence)Enum.Parse(typeof(Recurrence), Console.ReadLine());
+        Console.WriteLine("Select Goal Type:");
+        foreach (GoalType type in Enum.GetValues(typeof(GoalType)))
+        {
+            Console.WriteLine($"{(int)type}. {type}");
+        }
+        int goalTypeNumber = Convert.ToInt32(Console.ReadLine());
+        GoalType goalType = (GoalType)goalTypeNumber;
+        Console.WriteLine("Select Recurrence:");
+        foreach (RecurrenceType recurrenceType in Enum.GetValues(typeof(RecurrenceType)))
+        {
+            Console.WriteLine($"{(int)recurrenceType}. {recurrenceType}");
+        }
+        int recurrenceNumber = Convert.ToInt32(Console.ReadLine());
+        RecurrenceType recurrence = (RecurrenceType)recurrenceNumber;
 
         ProcessGoal newProcessGoal = new(desiredProcess, goalType, recurrence);
         return newProcessGoal;

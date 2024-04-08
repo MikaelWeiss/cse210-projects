@@ -10,7 +10,7 @@ abstract class Goal
     /// <summary>
     /// Recurrence is used as a nullable type. If the goal is not recurring, recurrence will be null.
     /// </summary>
-    protected Recurrence recurrence;
+    protected RecurrenceType recurrence;
     public abstract string DisplayStringValue();
     public abstract string StorageStringValue();
     public List<Event> EventsToday()

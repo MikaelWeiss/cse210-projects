@@ -11,7 +11,7 @@ class OutcomeGoal : Goal
         events.Add(newEvent);
     }
 
-    public OutcomeGoal(string desiredOutcome, DateTime endDate, GoalType goalType, Recurrence recurrence)
+    public OutcomeGoal(string desiredOutcome, DateTime endDate, GoalType goalType, RecurrenceType recurrence)
     {
         this.desiredOutcome = desiredOutcome;
         this.endDate = endDate;
@@ -43,26 +43,48 @@ class OutcomeGoal : Goal
         Console.Write("Enter End Date: ");
         DateTime endDate = Convert.ToDateTime(Console.ReadLine());
         Console.Write("Enter Goal Type: ");
-        GoalType goalType = (GoalType)Enum.Parse(typeof(GoalType), Console.ReadLine());
-        Console.Write("Enter Recurrence: ");
-        Recurrence recurrence = (Recurrence)Enum.Parse(typeof(Recurrence), Console.ReadLine());
-
-        OutcomeGoal newOutcomeGoal = new(desiredOutcome, endDate, goalType, recurrence);
+        Console.WriteLine("Select Goal Type:");
+        foreach (GoalType type in Enum.GetValues(typeof(GoalType)))
+        {
+            Console.WriteLine($"{(int)type}. {type}");
+        }
+        int goalTypeNumber = Convert.ToInt32(Console.ReadLine());
+        GoalType selectedGoalType = (GoalType)goalTypeNumber;
+        Console.WriteLine("Select Recurrence:");
+        foreach (RecurrenceType recurrenceType in Enum.GetValues(typeof(RecurrenceType)))
+        {
+            Console.WriteLine($"{(int)recurrenceType}. {recurrenceType}");
+        }
+        int recurrenceNumber = Convert.ToInt32(Console.ReadLine());
+        RecurrenceType recurrence = (RecurrenceType)recurrenceNumber;
+        OutcomeGoal newOutcomeGoal = new(desiredOutcome, endDate, selectedGoalType, recurrence);
         return newOutcomeGoal;
     }
 
     public OutcomeGoal(string storageString)
     {
+        events = [];
+        notes = [];
+
         string[] storageArray = storageString.Split("||");
         goalType = (GoalType)Enum.Parse(typeof(GoalType), storageArray[1]);
-        recurrence = (Recurrence)Enum.Parse(typeof(Recurrence), storageArray[2]);
+        recurrence = (RecurrenceType)Enum.Parse(typeof(RecurrenceType), storageArray[2]);
         string[] eventStrings = storageArray[3].Split("|~|");
         foreach (string eventString in eventStrings)
         {
             Event newEvent = new(eventString);
             events.Add(newEvent);
         }
-        desiredOutcome = storageArray[4];
-        endDate = Convert.ToDateTime(storageArray[5]);
+
+        string[] noteStrings = storageArray[4].Split("|~|");
+        foreach (string noteString in noteStrings)
+        {
+            Note newNote = new(noteString);
+            notes.Add(newNote);
+        }
+
+        desiredOutcome = storageArray[5];
+
+        endDate = Convert.ToDateTime(storageArray[6]);
     }
 }

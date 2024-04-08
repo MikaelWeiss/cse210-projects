@@ -33,7 +33,7 @@ class Program
                 Vision.SaveVisions(visions);
                 break;
             case "4":
-                Vision.LoadVisions(visions);
+                visions = Vision.LoadVisions(visions);
                 break;
             case "5":
                 Environment.Exit(0);

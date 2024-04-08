@@ -40,7 +40,7 @@ class Vision
         string[] visionParts = storageString.Split("~~~");
         name = visionParts[0];
         description = visionParts[1];
-        string[] goalStrings = visionParts[2].Split("|||");
+        string[] goalStrings = visionParts[2].Split("|*|");
         foreach (string goalString in goalStrings)
         {
             Goal newGoal = Goal.GoalFromStorage(goalString);
@@ -50,7 +50,7 @@ class Vision
 
     public string StorageStringValue()
     {
-        string goalsString = string.Join("|||", goals.Select(goal => goal.StorageStringValue()));
+        string goalsString = string.Join("|*|", goals.Select(goal => goal.StorageStringValue()));
         return $"{name}~~~{description}~~~{goalsString}";
     }
 
@@ -104,7 +104,7 @@ class Vision
 
     public static void SaveVisions(List<Vision> visions)
     {
-        string[] stringVisions = visions.Select(vision => vision.ToString()).ToArray();
+        string[] stringVisions = visions.Select(vision => vision.StorageStringValue()).ToArray();
         string stringValue = string.Join("~~~|~~~", stringVisions);
         FileManager.WriteToFile(stringValue);
         Console.Clear();
@@ -112,7 +112,7 @@ class Vision
         Console.WriteLine();
     }
 
-    public static void LoadVisions(List<Vision> visions)
+    public static List<Vision> LoadVisions(List<Vision> visions)
     {
         if (visions.Count != 0)
         {
@@ -121,7 +121,7 @@ class Vision
             string choice = Console.ReadKey().KeyChar.ToString();
             if (choice != "y")
             {
-                return;
+                return [];
             }
         }
 
@@ -133,9 +133,11 @@ class Vision
             Vision newVision = new(stringVision);
             newVisions.Add(newVision);
         }
-        visions = newVisions;
+        
         Console.Clear();
         Console.WriteLine("Visions loaded");
         Console.WriteLine();
+
+        return newVisions;
     }
 }

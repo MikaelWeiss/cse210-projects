@@ -13,6 +13,10 @@ class Note
     }
     public Note(string storageString)
     {
+        if (storageString == "")
+        {
+            return;
+        }
         string[] storageArray = storageString.Split("|~%|");
         Date = Convert.ToDateTime(storageArray[0]);
         Text = storageArray[1];
