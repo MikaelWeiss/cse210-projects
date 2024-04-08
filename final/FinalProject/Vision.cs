@@ -133,7 +133,7 @@ class Vision
             Vision newVision = new(stringVision);
             newVisions.Add(newVision);
         }
-        
+
         Console.Clear();
         Console.WriteLine("Visions loaded");
         Console.WriteLine();
